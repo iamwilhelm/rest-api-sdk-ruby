@@ -317,6 +317,29 @@ module PayPal::SDK
           array_of  :links, Links
         end
 
+        include RequestDataType
+
+        class << self
+          def find(resource_id)
+            raise ArgumentError.new("id required") if resource_id.to_s.strip.empty?
+            path = "v1/payments/orders/#{resource_id}"
+            response = api.get(path)
+            self.new(response)
+          end
+        end
+
+        def authorize()
+          path = "v1/payments/orders/#{self.id}/authorize"
+          response = api.post(path, self.to_hash, http_header)
+          Authorization.new(response)
+        end
+
+        def capture()
+          path = "v1/payments/orders/#{self.id}/capture"
+          response = api.post(path, self.to_hash, http_header)
+          Capture.new(response)
+        end
+
       end
       class Sale < Base
 
