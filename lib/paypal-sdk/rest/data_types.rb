@@ -328,9 +328,9 @@ module PayPal::SDK
           end
         end
 
-        def authorize()
+        def authorize(amount)
           path = "v1/payments/orders/#{self.id}/authorize"
-          response = api.post(path, self.to_hash, http_header)
+          response = api.post(path, amount.to_hash, http_header)
           Authorization.new(response)
         end
 
