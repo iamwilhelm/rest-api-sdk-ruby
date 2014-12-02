@@ -494,6 +494,7 @@ module PayPal::SDK
 
         def self.load_members
           object_of :amount, Amount
+          object_of :invoice_number, String
         end
 
       end
