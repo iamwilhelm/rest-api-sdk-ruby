@@ -234,6 +234,8 @@ module PayPal::SDK
           object_of :payee, Payee
           object_of :description, String
           object_of :item_list, ItemList
+          object_of :invoice_number, String
+          object_of :custom, String
           array_of  :related_resources, RelatedResources
           array_of  :transactions, Transaction
         end
@@ -494,7 +496,6 @@ module PayPal::SDK
 
         def self.load_members
           object_of :amount, Amount
-          object_of :invoice_number, String
         end
 
       end
